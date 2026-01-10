@@ -1,6 +1,8 @@
 import {assets} from "@/assets/assets"
+import useSideBarStore from "@/store/navigation";
 import { Link, linkOptions } from '@tanstack/react-router';
 import { Menu, Search, User } from "lucide-react";
+import Sidebar from "./sidebar";
 
 
 const options = linkOptions([
@@ -28,6 +30,8 @@ const options = linkOptions([
 ])
 
 const Header = () => {
+  const {open, toggleSideBar } = useSideBarStore()
+
   return (
    <nav className="flex justify-between items-center align-center gap-4 p-8 ">
     <div>
@@ -40,8 +44,8 @@ const Header = () => {
             <Link
               {...option}
               key={option.to}
-              activeProps={{ className: `border-b border-orange-800 text-bold text-lg md:text-md text-orange-400` }}
-              className="p-2"
+              activeProps={{ className: `underline underline-offset-8 decoration-2 decoration-orange-800 font-bold` }}
+              className="p-2 text-lg"
             >
               {option.label}
             </Link>
@@ -58,13 +62,14 @@ const Header = () => {
         </li>
       </ol>
 
-      <ol className="flex-row gap-2 flex md:hidden">
+      <ol className="flex-row gap-2 flex md:hidden" onClick={toggleSideBar}>
         <li>
           <Menu/>
         </li>
       </ol>
 
     </div>
+    {open&&<Sidebar/>}
    </nav>
   )
 }
