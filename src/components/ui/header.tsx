@@ -7,7 +7,7 @@ import Sidebar from "./sidebar";
 
 const options = linkOptions([
   {
-    to: '/home' as string,
+    to: '/' as string,
     label: 'Home',
     activeOptions: { exact: true },
   },

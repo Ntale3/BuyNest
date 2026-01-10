@@ -1,3 +1,5 @@
+import Slider from '@/components/ui/header-slider'
+import ProductCard from '@/components/ui/product-card'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -6,8 +8,10 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   return (
-    <div className="p-2">
-      <h3 className="text-red-500">Welcome Home!</h3>
+    <div className="grid gap-4 px-2">
+      {/* <h3 className="text-red-500">Welcome Home!</h3> */}
+      <Slider/>
+      <ProductCard/>
     </div>
   )
 }

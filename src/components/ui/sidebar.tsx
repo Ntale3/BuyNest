@@ -3,7 +3,7 @@ import { Link, linkOptions } from "@tanstack/react-router"
 
 const options = linkOptions([
   {
-    to: '/home' as string,
+    to: '/' as string,
     label: 'Home',
     activeOptions: { exact: true },
   },
