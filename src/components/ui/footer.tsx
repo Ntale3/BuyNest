@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="py-4 text-center text-xs md:text-sm">
-        Copyright {new Date().getFullYear()} © GreatStack.dev All Right Reserved.
+        Copyright {new Date().getFullYear()} © Ntale3 All Right Reserved.
       </p>
     </footer>
   );
