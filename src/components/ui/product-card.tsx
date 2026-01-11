@@ -10,7 +10,7 @@ const productCard = () => {
           <img
           src={assets.sony}
           alt="Image"
-          className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full"
+          className="group-hover:scale-105 transition object-cover w-4/5 h-4/5 md:w-full md:h-full p-2"
           width={800}
           height={800}
           />
@@ -20,6 +20,7 @@ const productCard = () => {
         <p className="w-full text-xs max-sm:hidden truncate">Apple AirPods Pro </p>
 
         <div className="flex items-center gap-2">
+          <p className="text-xs">{4.5}</p>
           {Array.from({ length: 5 }).map((_, index) => (
                         <img
                             key={index}
