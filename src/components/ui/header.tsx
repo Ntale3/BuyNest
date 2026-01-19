@@ -12,7 +12,7 @@ const options = linkOptions([
     activeOptions: { exact: true },
   },
   {
-    to: '/shop' as string,
+    to: '/products' as string,
     label: 'Shop',
   },
   {
