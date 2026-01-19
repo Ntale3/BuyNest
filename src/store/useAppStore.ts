@@ -32,7 +32,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
   currency: '$',
 
   // State
-  products: [],
+  products: [...productsDummyData],
   userData: null,
   isSeller: true,
   cartItems: {},
