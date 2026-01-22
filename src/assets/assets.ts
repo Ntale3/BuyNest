@@ -21,6 +21,9 @@ import order_icon from "./order_icon.svg"
 import box_icon from "./box_icon.svg"
 import redirect_icon from "./redirect_icon.svg"
 import upload_area from "./upload_area.png"
+import girl_with_earphone_image from "./girl_with_earphone_image.png"
+import girl_with_headphone_image from "./girl_with_headphone_image.png"
+import boy_with_laptop_image from "./boy_with_laptop_image.png"
 import type { Address, Order, Product, User } from "@/types";
 
 export const assets={
@@ -46,7 +49,10 @@ add_icon,
 product_list_icon,
 box_icon,
 redirect_icon,
-upload_area
+upload_area,
+girl_with_earphone_image,
+girl_with_headphone_image,
+boy_with_laptop_image
 }
 
 export const productsDummyData:Product[] = [

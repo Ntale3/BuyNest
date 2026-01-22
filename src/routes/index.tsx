@@ -1,4 +1,5 @@
 import Banner from '@/components/ui/banner'
+import FeatureProduct from '@/components/ui/featured-product'
 import Footer from '@/components/ui/footer'
 import Slider from '@/components/ui/header-slider'
 import NewsLetter from '@/components/ui/news-letter'
@@ -16,8 +17,9 @@ function Index() {
       <Slider/>
       <ProductCard/>
       <Banner/>
+      <FeatureProduct/>
       <NewsLetter/>
-      
+
     </div>
   )
 }

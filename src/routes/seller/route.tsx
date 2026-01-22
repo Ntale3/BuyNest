@@ -8,7 +8,6 @@ export const Route = createFileRoute('/seller')({
 function RouteComponent() {
   return(
     <div>
-      {/* <Navbar /> */}
       <div className='flex w-full'>
         <Sidebar />
         <Outlet/>
