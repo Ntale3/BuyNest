@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as SellerRouteRouteImport } from './routes/seller/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SellerIndexRouteImport } from './routes/seller/index'
 import { Route as ProductsIndexRouteImport } from './routes/products/index'
@@ -34,15 +35,20 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SellerRouteRoute = SellerRouteRouteImport.update({
+  id: '/seller',
+  path: '/seller',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SellerIndexRoute = SellerIndexRouteImport.update({
-  id: '/seller/',
-  path: '/seller/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => SellerRouteRoute,
 } as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/products/',
@@ -50,14 +56,14 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const SellerProductListRoute = SellerProductListRouteImport.update({
-  id: '/seller/product-list',
-  path: '/seller/product-list',
-  getParentRoute: () => rootRouteImport,
+  id: '/product-list',
+  path: '/product-list',
+  getParentRoute: () => SellerRouteRoute,
 } as any)
 const SellerOrdersRoute = SellerOrdersRouteImport.update({
-  id: '/seller/orders',
-  path: '/seller/orders',
-  getParentRoute: () => rootRouteImport,
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => SellerRouteRoute,
 } as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
@@ -67,6 +73,7 @@ const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/seller': typeof SellerRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
@@ -74,7 +81,7 @@ export interface FileRoutesByFullPath {
   '/seller/orders': typeof SellerOrdersRoute
   '/seller/product-list': typeof SellerProductListRoute
   '/products': typeof ProductsIndexRoute
-  '/seller': typeof SellerIndexRoute
+  '/seller/': typeof SellerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/seller': typeof SellerRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
@@ -103,6 +111,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/seller'
     | '/about'
     | '/cart'
     | '/contact'
@@ -110,7 +119,7 @@ export interface FileRouteTypes {
     | '/seller/orders'
     | '/seller/product-list'
     | '/products'
-    | '/seller'
+    | '/seller/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/seller'
     | '/about'
     | '/cart'
     | '/contact'
@@ -137,14 +147,12 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SellerRouteRoute: typeof SellerRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
-  SellerOrdersRoute: typeof SellerOrdersRoute
-  SellerProductListRoute: typeof SellerProductListRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
-  SellerIndexRoute: typeof SellerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -170,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/seller': {
+      id: '/seller'
+      path: '/seller'
+      fullPath: '/seller'
+      preLoaderRoute: typeof SellerRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -179,10 +194,10 @@ declare module '@tanstack/react-router' {
     }
     '/seller/': {
       id: '/seller/'
-      path: '/seller'
-      fullPath: '/seller'
+      path: '/'
+      fullPath: '/seller/'
       preLoaderRoute: typeof SellerIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof SellerRouteRoute
     }
     '/products/': {
       id: '/products/'
@@ -193,17 +208,17 @@ declare module '@tanstack/react-router' {
     }
     '/seller/product-list': {
       id: '/seller/product-list'
-      path: '/seller/product-list'
+      path: '/product-list'
       fullPath: '/seller/product-list'
       preLoaderRoute: typeof SellerProductListRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof SellerRouteRoute
     }
     '/seller/orders': {
       id: '/seller/orders'
-      path: '/seller/orders'
+      path: '/orders'
       fullPath: '/seller/orders'
       preLoaderRoute: typeof SellerOrdersRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof SellerRouteRoute
     }
     '/products/$productId': {
       id: '/products/$productId'
@@ -215,16 +230,30 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SellerRouteRouteChildren {
+  SellerOrdersRoute: typeof SellerOrdersRoute
+  SellerProductListRoute: typeof SellerProductListRoute
+  SellerIndexRoute: typeof SellerIndexRoute
+}
+
+const SellerRouteRouteChildren: SellerRouteRouteChildren = {
+  SellerOrdersRoute: SellerOrdersRoute,
+  SellerProductListRoute: SellerProductListRoute,
+  SellerIndexRoute: SellerIndexRoute,
+}
+
+const SellerRouteRouteWithChildren = SellerRouteRoute._addFileChildren(
+  SellerRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SellerRouteRoute: SellerRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
-  SellerOrdersRoute: SellerOrdersRoute,
-  SellerProductListRoute: SellerProductListRoute,
   ProductsIndexRoute: ProductsIndexRoute,
-  SellerIndexRoute: SellerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
