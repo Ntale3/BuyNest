@@ -15,9 +15,15 @@ import twitter_icon from "./twitter_icon.svg";
 import md_controller_image from "./md_controller_image.png";
 import sm_controller_image from "./sm_controller_image.png"
 import jbl_soundbox from "./jbl_soundbox_image.png"
+import add_icon from "./add_icon.svg"
+import product_list_icon from "./product_list_icon.svg"
+import order_icon from "./order_icon.svg"
+import box_icon from "./box_icon.svg"
+import redirect_icon from "./redirect_icon.svg"
+import upload_area from "./upload_area.png"
 import type { Address, Order, Product, User } from "@/types";
 
-export  const assets={
+export const assets={
 logo,
 sony,
 star_dull_icon,
@@ -34,7 +40,13 @@ instagram_icon,
 twitter_icon,
 md_controller_image,
 sm_controller_image,
-jbl_soundbox
+jbl_soundbox,
+order_icon,
+add_icon,
+product_list_icon,
+box_icon,
+redirect_icon,
+upload_area
 }
 
 export const productsDummyData:Product[] = [
