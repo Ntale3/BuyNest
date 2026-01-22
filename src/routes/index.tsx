@@ -17,7 +17,7 @@ function Index() {
       <ProductCard/>
       <Banner/>
       <NewsLetter/>
-      <Footer/>
+      
     </div>
   )
 }
